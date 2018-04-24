@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .wrapper{
+            width: 500px;
+            height: 500px;
+            text-align: center;
+            margin: 50px auto 0 auto;
+        }
+        .button{
+
+            border: 1px solid #cccccc;
+            font: bold 16px "Microsoft YaHei";
+            color: #666666;
+            text-decoration: none;
+            border-radius: 6px;
+            box-shadow: 0 1px 1px #bbbbbb;
+            padding: 3px 12px;
+        }
+        .button:hover{
+            color: #333333;
+        }
+        .text-wrap{
+            padding: 10px 10px 50px 10px;
+        }
+        .text-wrap span{
+            display: block;
+        }
+        .ts {
+            display: inline-block;
+            width: 0;
+            height: 3px;
+            background:#4569e6;
+            transition:all 1s;
+            margin: 0;
+            padding: 0;
+        }
+        .active{
+            width: 100px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            (function () {
+               var el = document.getElementById("wrapper");
+               var text = el.getElementsByTagName("i")[0];
+               var btn = el.getElementsByTagName("a")[0];
+               btn.onclick = function () {
+                   //添加效果
+                   console.log(text);
+                   text.className = "ts active";
+                   //去除效果
+                   setTimeout(
+                       function () {
+                           text.className = "ts";
+                       },2000
+                   )
+               }
+            })()
+        }
+    </script>
+</head>
+<body>
+    <div id="wrapper" class="wrapper">
+        <div class="text-wrap">
+            <span>测试测试</span>
+            <i class="ts"></i>
+        </div>
+        <a class="button" href="javascript:void(0);">切换样式</a>
+    </div>
+</body>
+</html>
