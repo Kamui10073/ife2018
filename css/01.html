@@ -25,7 +25,7 @@
             -moz-box-shadow: 0 1px 1px #bbbbbb;
             -webkit-box-shadow: 0 1px 1px #bbbbbb;
             -o-box-shadow: 0 1px 1px #bbbbbb;
-
+            outline:0;
             padding: 3px 12px;
         }
         .button:hover{
@@ -83,19 +83,31 @@
                var text = el.getElementsByTagName("span")[0];
                var line = el.getElementsByTagName("i")[0];
                var btn = el.getElementsByTagName("button")[0];
+               var btn1 = el.getElementsByTagName("button")[1];
                btn.onclick = function () {
                    //添加效果
                    //console.log(line);
-                   line.className = "line active";
-                   text.className = "text blue";
-                   //去除效果
-                   setTimeout(
-                       function () {
-                           line.className = "line";
-                           text.className = "text";
-                       },500
-                   )
-               }
+                   if(line.className === "line"){
+                       line.className = "line active";
+                       text.className = "text blue";
+                   }else {
+                       line.className = "line";
+                       text.className = "text";
+                   }
+               };
+                btn1.onclick = function () {
+                    //添加效果
+                    //console.log(line);
+                    line.className = "line active";
+                    text.className = "text blue";
+                    //去除效果
+                    setTimeout(
+                        function () {
+                            line.className = "line";
+                            text.className = "text";
+                        },500
+                    )
+                }
             })()
         }
     </script>
@@ -111,7 +123,8 @@
             </div>
         </div>
         <!--按钮-->
-        <button class="button">切换样式</button>
+        <button class="button">切换样式1</button>
+        <button style="margin-top: 5px;" class="button">切换样式2</button>
     </div>
 </body>
 </html>
