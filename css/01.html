@@ -5,37 +5,71 @@
     <title>Title</title>
     <style>
         .wrapper{
-            width: 500px;
+            width: 150px;
             height: 500px;
             text-align: center;
             margin: 50px auto 0 auto;
         }
         .button{
-
+            background: #ffffff;
             border: 1px solid #cccccc;
             font: bold 16px "Microsoft YaHei";
             color: #666666;
             text-decoration: none;
+            /*圆角*/
             border-radius: 6px;
+            -moz-border-radius: 6px;
+            -webkit-border-radius: 6px;
+            /*阴影*/
             box-shadow: 0 1px 1px #bbbbbb;
+            -moz-box-shadow: 0 1px 1px #bbbbbb;
+            -webkit-box-shadow: 0 1px 1px #bbbbbb;
+            -o-box-shadow: 0 1px 1px #bbbbbb;
+
             padding: 3px 12px;
         }
         .button:hover{
             color: #333333;
         }
         .text-wrap{
-            padding: 10px 10px 50px 10px;
+            position: relative;
+            width: 150px;
+            padding: 50px 0;
         }
-        .text-wrap span{
-            display: block;
+        .text{display: inline-block;
+            font: bold 22px "Microsoft YaHei";
+            /*变形*/
+            transition: all 0.5s;
+            -moz-transition: all 0.5s;
+            -webkit-transition: all 0.5s;
+            -o-transition: all 0.5s;
         }
-        .ts {
+        .blue{
+            color: #4569e6;
+            /*透明度*/
+            opacity: 0.8;
+            -moz-opacity: 0.8;
+        }
+        .line-wrap{
+            position:absolute;
+            height: 3px;
+            width: 100px;
+            top: 66px;
+            left:25px;
+            text-align: center;
+        }
+        .line {
             display: inline-block;
             width: 0;
             height: 3px;
             background:#4569e6;
-            transition:all 1s;
-            margin: 0;
+            /*变形*/
+            transition:all 0.5s;
+            -moz-transition:all 0.5s;
+            -webkit-transition:all 0.5s;
+            -o-transition:all 0.5s;
+
+            margin-top: -50px;
             padding: 0;
         }
         .active{
@@ -46,17 +80,20 @@
         window.onload = function () {
             (function () {
                var el = document.getElementById("wrapper");
-               var text = el.getElementsByTagName("i")[0];
-               var btn = el.getElementsByTagName("a")[0];
+               var text = el.getElementsByTagName("span")[0];
+               var line = el.getElementsByTagName("i")[0];
+               var btn = el.getElementsByTagName("button")[0];
                btn.onclick = function () {
                    //添加效果
-                   console.log(text);
-                   text.className = "ts active";
+                   //console.log(line);
+                   line.className = "line active";
+                   text.className = "text blue";
                    //去除效果
                    setTimeout(
                        function () {
-                           text.className = "ts";
-                       },2000
+                           line.className = "line";
+                           text.className = "text";
+                       },500
                    )
                }
             })()
@@ -65,11 +102,16 @@
 </head>
 <body>
     <div id="wrapper" class="wrapper">
+        <!--文字-->
         <div class="text-wrap">
-            <span>测试测试</span>
-            <i class="ts"></i>
+            <span class="text">测试测试</span>
+            <!--模拟下划线-->
+            <div class="line-wrap">
+                <i class="line"></i>
+            </div>
         </div>
-        <a class="button" href="javascript:void(0);">切换样式</a>
+        <!--按钮-->
+        <button class="button">切换样式</button>
     </div>
 </body>
 </html>
