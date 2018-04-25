@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        ul{
+            display: block;
+            text-align: center;
+        }
+        ul li{
+            display: inline-block;
+            width: 60px;
+            height: 68px;
+            line-height: 68px;
+            text-align: center;
+            font-size: 16px;
+            background: #f7f6f6;
+            border: 1px solid #cccccc;
+            margin-right: 50px;
+        }
+        .box0{
+
+        }
+        .box1{
+            /*倾斜*/
+            transform:skew(30deg);
+            -ms-transform:skew(30deg); /* IE 9 */
+            -moz-transform:skew(30deg); /* Firefox */
+            -webkit-transform:skew(30deg); /* Safari and Chrome */
+            -o-transform:skew(30deg); /* Opera */
+        }
+        .box2{
+            /*压缩*/
+            transform: scale(0.5,1);
+            -ms-transform: scale(0.5,1);	/* IE 9 */
+            -webkit-transform: scale(0.5,1);	/* Safari 和 Chrome */
+            -o-transform: scale(0.5,1);	/* Opera */
+            -moz-transform: scale(0.5,1);	/* Firefox */
+        }
+        .box3{
+            /*旋转*/
+            transform:rotate(45deg);
+            -ms-transform:rotate(45deg); /* IE 9 */
+            -moz-transform:rotate(45deg); /* Firefox */
+            -webkit-transform:rotate(45deg); /* Safari and Chrome */
+            -o-transform:rotate(45deg); /* Opera */
+        }
+        .box4{
+            /*位移*/
+            transform: translate(10px,20px);
+            -ms-transform: translate(10px,20px);		/* IE 9 */
+            -webkit-transform: translate(10px,20px);	/* Safari and Chrome */
+            -o-transform: translate(10px,20px);		/* Opera */
+            -moz-transform: translate(10px,20px);		/* Firefox */
+        }
+        .box5{
+            /*综合*/
+            transform:skew(30deg) scale(0.5,1) rotate(45deg) translate(10px,20px);
+            -ms-transform:skew(30deg) scale(0.5,1) rotate(45deg) translate(10px,20px);
+            -webkit-transform:skew(30deg) scale(0.5,1) rotate(45deg) translate(10px,20px);
+            -o-transform:skew(30deg) scale(0.5,1) rotate(45deg) translate(10px,20px);
+            -moz-transform:skew(30deg) scale(0.5,1) rotate(45deg) translate(10px,20px);
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li class="box0">box0</li>
+        <li class="box1">box1</li>
+        <li class="box2">box2</li>
+        <li class="box3">box3</li>
+        <li class="box4">box4</li>
+        <li class="box5">box5</li>
+    </ul>
+</body>
+</html>
