@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>No.5 - 纯 CSS 制作绕中轴旋转的立方体</title>
+<style>
+    *, *:before, *:after {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: #000000;
+    }
+
+    .wrapper {
+        padding-top: 20%;
+    }
+
+    .viewport {
+        -webkit-perspective: 300px;
+        -moz-perspective: 300px;
+        perspective: 300px;
+    }
+
+    .cube {
+        position: relative;
+        margin: 0 auto;
+        height: 200px;
+        width: 200px;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+    }
+
+    .cube > div {
+        overflow: hidden;
+        position: absolute;
+        opacity: .5;
+        height: 200px;
+        width: 200px;
+        background: #1f4d7a;
+        border: 2px solid #009eff;
+    }
+
+    .cube > div:hover {
+        cursor: pointer;
+    }
+    /*立方体各个面*/
+    .cube > div:first-child {
+        /*background:#f29a76;*/
+        -webkit-transform: translateZ(100px);
+        -moz-transform: translateZ(100px);
+        -ms-transform: translateZ(100px);
+        -o-transform: translateZ(100px);
+        transform: translateZ(100px);
+    }
+
+    .cube > div:nth-child(2) {
+        /*background:#61BFBE;*/
+        -webkit-transform: translateZ(-100px);
+        -moz-transform: translateZ(-100px);
+        -ms-transform: translateZ(-100px);
+        -o-transform: translateZ(-100px);
+        transform:translateZ(-100px);
+    }
+
+    .cube > div:nth-child(3) {
+        /*background:#BADDD6;*/
+        -webkit-transform: rotateX(90deg) translateZ(-100px);
+        -moz-transform: rotateX(90deg) translateZ(-100px);
+        -ms-transform: rotateX(90deg) translateZ(-100px);
+        -o-transform: rotateX(90deg) translateZ(-100px);
+        transform: rotateX(90deg) translateZ(-100px);
+    }
+
+    .cube > div:nth-child(4) {
+        /*background:#FFB5BA;*/
+        -webkit-transform: rotateY(-90deg) translateZ(100px);
+        -moz-transform: rotateY(-90deg) translateZ(100px);
+        -ms-transform: rotateY(-90deg) translateZ(100px);
+        -o-transform: rotateY(-90deg) translateZ(100px);
+        transform: rotateY(-90deg) translateZ(100px);
+    }
+
+    .cube > div:nth-child(5) {
+        /*background:#866667;*/
+        -webkit-transform: rotateX(-90deg)translateZ(-100px);
+        -moz-transform: rotateX(-90deg)translateZ(-100px);
+        -ms-transform: rotateX(-90deg)translateZ(-100px);
+        -o-transform: rotateX(-90deg)translateZ(-100px);
+        transform:rotateX(-90deg)translateZ(-100px);
+    }
+
+    .cube > div:nth-child(6) {
+        /*background:#E25D6E;*/
+        -webkit-transform: rotateY(90deg) translateZ(100px);
+        -moz-transform: rotateY(90deg) translateZ(100px);
+        -ms-transform: rotateY(90deg) translateZ(100px);
+        -o-transform: rotateY(90deg) translateZ(100px);
+        transform: rotateY(90deg) translateZ(100px);
+    }
+    /*动画*/
+    .cube:hover{
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-animation:cube 10s linear both infinite;
+        animation:cube 10s linear both infinite;
+    }
+
+    @keyframes cube{
+        0%{
+            -webkit-transform: rotateY(0deg);
+            -moz-transform: rotateY(0deg);
+            -ms-transform: rotateY(0deg);
+            -o-transform: rotateY(0deg);
+            transform: rotateY(0deg);
+        }
+        100%{
+            -webkit-transform: rotateY(-360deg);
+            -moz-transform: rotateY(-360deg);
+            -ms-transform: rotateY(-360deg);
+            -o-transform: rotateY(-360deg);
+            transform: rotateY(-360deg);
+        }
+    }
+
+</style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="viewport">
+        <div class="cube">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
