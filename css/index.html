@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="zh-CN">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>IFE2018-CSS</title>
+    <script src="js/jQuery.js"></script>
+    <style>
+        html {font-family: sans-serif;-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%; }
+        body{margin: 0;color: #333;text-shadow: 1px 1px 3px #ccc;font-family: "Microsoft YaHei";}
+        a{text-decoration: none;color: #333;}
+        h2{font-weight: normal;}
+        h2.on a{border-bottom: 2px solid #3182B9}
+        a:hover{color: #960000}
+        .content{width: 45%;padding:20px 0;margin: 0 auto;}
+        h1 {font-size: 2em;margin: 0.67em 0;text-align: center;}
+        hr {-moz-box-sizing: content-box;box-sizing: content-box;height: 0; }
+        @media screen and (max-width: 768px) {
+            .content {
+                width: 90%;
+            }
+            h1 {font-size: 1.5em;margin: 0.67em 0;text-align: center;}
+            h2{font-size: 1.2em;}
+        }
+        @media screen and (min-width: 769px) and (max-width: 992px) {
+            .content {
+                width: 80%;
+            }
+        }
+        @media screen and (min-width: 993px) and (max-width: 1600px) {
+            .content {
+                width: 70%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content" id = "title-inner">
+        <h1>IFE218-CSS</h1>
+        <hr>
+        <h2><a href="01.html" target="_blank"></a></h2>
+        <h2><a href="02.html" target="_blank"></a></h2>
+        <h2><a href="03.html" target="_blank"></a></h2>
+        <h2><a href="04.html" target="_blank"></a></h2>
+        <h2><a href="05.html" target="_blank"></a></h2>
+        <h2><a href="06.html" target="_blank"></a></h2>
+        <hr>
+        <p id="num-print"></p>
+        <script type="text/javascript">
+            $(document).ready(function () {
+                /**
+                 * Created by Kamui on 2017/3/22.
+                 */
+                //获取链接标题
+                function innerText(id,el) {
+                    $(id).find(el).each(function () {
+                        var text = $(this).attr("href");
+                        $(this).text(text);
+                    })
+                }
+                innerText(".content","a");
+                //获取页面个数
+                function ChildrenNum(parent,children,_print) {
+                    var num = $("#" + parent).children(children).length;
+                    $("#" + _print).html("共：" + num + "&nbsp;" + "个页面");
+                }
+                ChildrenNum("title-inner","h2","num-print");
+                //标题选中效果
+                $(".content h2").click(function(){
+                    $(this).addClass("on").siblings().removeClass("on");
+                });
+            })
+        </script>
+    </div>
+</body>
+</html>
