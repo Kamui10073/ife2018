@@ -7,6 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        body{
+            background: #deedff;
+        }
         .wrapper{
             height: 480px;
             width: 640px;
@@ -15,13 +18,16 @@
             margin: 0 auto;
             overflow: hidden;
             padding: 1px;
+            box-shadow: 0 0 10px #1f4d7a;
         }
         .wrap{
             position:absolute;
             top:500px;
-            width: 600px;
+            width: 640px;
             height: 60px;
             margin: 0 auto;
+            background: #ffffff;
+            box-shadow: 0 0 1px #cccccc;
         }
         .wrap a{
             display: inline-block;
@@ -33,7 +39,7 @@
             color: #cccccc;
             line-height: 50px;
             text-decoration: none;
-            border: 1px solid #dddddd;
+            border: 1px solid #ffffff;
         }
         .wrap a.selected{
             border: 1px solid #e85a5e;
@@ -48,18 +54,23 @@
         }
         .wrap > a:first-child{
             background: url("images/img_01.jpg") no-repeat center;
+            background-size: contain;
         }
         .wrap > a:nth-child(2){
             background: url("images/img_02.jpg") no-repeat center;
+            background-size: contain;
         }
         .wrap > a:nth-child(3){
             background: url("images/img_03.jpg") no-repeat center;
+            background-size: contain;
         }
         .wrap > a:nth-child(4){
             background: url("images/img_04.jpg") no-repeat center;
+            background-size: contain;
         }
         .wrap > a:nth-child(5){
             background: url("images/img_05.jpg") no-repeat center;
+            background-size: contain;
         }
 
         .img_01{
