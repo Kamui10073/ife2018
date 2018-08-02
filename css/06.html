@@ -41,9 +41,13 @@
             line-height: 50px;
             text-decoration: none;
             border: 1px solid #ffffff;
+            opacity: 1;
         }
         .wrap a.selected{
             border: 1px solid #e85a5e;
+        }
+        .wrap a:hover{
+            opacity:.6;
         }
         .wrapper .images img{
             position: relative;
@@ -184,11 +188,11 @@
         var module_picSlider = (function(){
             const imgWrap = document.querySelector('.wrapper');//指定选择器组的第一个元素
             const imgList = document.getElementById('img-wrap');//获取NodeList
-            var getImgBorder = imgList.getElementsByTagName('a');
+            var getImgList = imgList.getElementsByTagName('a');
             //移除<a>标签选中样式
             var removeBorder = function () {
-                for(var i = 0; i < getImgBorder.length; i++){
-                    getImgBorder[i].className = "";
+                for(var i = 0; i < getImgList.length; i++){
+                    getImgList[i].className = "";
                 }
             };
             //事件代理
@@ -211,11 +215,39 @@
                     }
                 })
             };
+            var play = function () {
+                //循环实现轮播
+                function playPic() {
+                    for(var i = 0; i < getImgList.length; i++){
+                        (function (i) {
+                            setTimeout(function () {
+                                removeBorder();
+                                var el = getImgList[i];
+                                el.className = "selected";
+                                //获取<a>标签name
+                                var name = el.name;
+                                var getImg = imgWrap.getElementsByTagName('img')[0];
+                                //改变图片src路径
+                                getImg.src='images/' + name + '.jpg';
+                                //改变图片载入效果
+                                getImg.className = name;
+                            },i*3500);
+                        })(i)
+                    }
+                    playPic();
+                }
+                //启动计时器
+                setTimeout(function () {
+                    playPic();
+                },500)
+            };
             return {
-                addListener : addListener
+                addListener : addListener,
+                play : play
             }
         }());
         module_picSlider.addListener();
+        module_picSlider.play();
     </script>
 </body>
 </html>
