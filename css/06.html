@@ -172,82 +172,85 @@
     </style>
 </head>
 <body>
-    <div class="wrapper">
-        <div class="images">
-            <img class="img_01" src="images/img_01.jpg"  alt="图片">
-        </div>
-        <div id="img-wrap" class="wrap">
-            <a name="img_01" href="javascript:void (0);"></a>
-            <a name="img_02" href="javascript:void (0);"></a>
-            <a name="img_03" href="javascript:void (0);"></a>
-            <a name="img_04" href="javascript:void (0);"></a>
-            <a name="img_05" href="javascript:void (0);"></a>
-        </div>
+<div class="wrapper">
+    <div class="images">
+        <img class="img_01" src="images/img_01.jpg"  alt="图片">
     </div>
-    <script>
-        var module_picSlider = (function(){
-            const imgWrap = document.querySelector('.wrapper');//指定选择器组的第一个元素
-            const imgList = document.getElementById('img-wrap');//获取NodeList
-            var getImgList = imgList.getElementsByTagName('a');
-            //移除<a>标签选中样式
-            var removeBorder = function () {
-                for(var i = 0; i < getImgList.length; i++){
-                    getImgList[i].className = "";
-                }
-            };
-            //事件代理
-            var addListener = function () {
-                imgList.addEventListener('click',function (ev) {
-                    var e = ev || window.event;
-                    var target = e.target || e.srcElement;
-                    if(target.nodeName.toLowerCase() === 'a'){
-                        //移除<a>标签选中样式
-                        removeBorder();
-                        //增加选中效果
-                        target.className = "selected";
-                        //获取<a>标签name
-                        var name = target.name;
-                        var getImg = imgWrap.getElementsByTagName('img')[0];
-                        //改变图片src路径
-                        getImg.src='images/' + name + '.jpg';
-                        //改变图片载入效果
-                        getImg.className = name;
-                    }
-                })
-            };
-            var play = function () {
-                //循环实现轮播
-                function playPic() {
-                    for(var i = 0; i < getImgList.length; i++){
-                        (function (i) {
-                            setTimeout(function () {
-                                removeBorder();
-                                var el = getImgList[i];
-                                el.className = "selected";
-                                //获取<a>标签name
-                                var name = el.name;
-                                var getImg = imgWrap.getElementsByTagName('img')[0];
-                                //改变图片src路径
-                                getImg.src='images/' + name + '.jpg';
-                                //改变图片载入效果
-                                getImg.className = name;
-                            },i*3500);
-                        })(i)
-                    }
-                    playPic();
-                }
-                //启动计时器
-                setTimeout(function () {
-                    playPic();
-                },2000)
-            };
-            return {
-                addListener : addListener,
-                play : play
+    <div id="img-wrap" class="wrap">
+        <a name="img_01" href="javascript:void (0);"></a>
+        <a name="img_02" href="javascript:void (0);"></a>
+        <a name="img_03" href="javascript:void (0);"></a>
+        <a name="img_04" href="javascript:void (0);"></a>
+        <a name="img_05" href="javascript:void (0);"></a>
+    </div>
+</div>
+<script>
+    var module_picSlider = (function(){
+        var imgWrap = document.querySelector('.wrapper');//指定选择器组的第一个元素
+        var imgList = document.getElementById('img-wrap');//获取NodeList
+        var getImgList = imgList.getElementsByTagName('a');//获取a标签
+        var getImg = imgWrap.getElementsByTagName('img')[0];//获取图片
+        //移除<a>标签选中样式
+        var removeBorder = function () {
+            for(var i = 0; i < getImgList.length; i++){
+                getImgList[i].className = "";
             }
-        }());
-        module_picSlider.addListener();
-        module_picSlider.play();
-    </script>
+        };
+        //事件代理
+        var addListener = function () {
+            imgList.addEventListener('click',function (ev) {
+                var e = ev || window.event;
+                var target = e.target || e.srcElement;
+                if(target.nodeName.toLowerCase() === 'a'){
+                    //移除<a>标签选中样式
+                    removeBorder();
+                    //增加选中效果
+                    target.className = "selected";
+                    //获取<a>标签name
+                    var name = target.name;
+                    //改变图片src路径
+                    getImg.src='images/' + name + '.jpg';
+                    //改变图片载入效果
+                    getImg.className = name;
+                }
+            })
+        };
+        var play = function (time) {
+            //循环实现轮播
+            function playPic() {
+                for(var i = 0; i < getImgList.length; i++){
+                    //闭包传入i
+                    var timer = (function (i) {
+                        return function () {
+                            removeBorder();
+                            var el = getImgList[i];
+                            el.className = "selected";
+                            //获取<a>标签name
+                            var name = el.name;
+                            //改变图片src路径
+                            getImg.src='images/' + name + '.jpg';
+                            //改变图片载入效果
+                            getImg.className = name;
+                            console.log(i);
+                        }
+                    })(i);
+                    //设定单次循环间隔
+                    setTimeout(timer,i*time);
+                }
+                //间隔等于循环总时间
+                setTimeout(playPic,time*5);
+            }
+            playPic();
+        };
+        return {
+            addListener : addListener,
+            play : play
+        }
+    }());
+    window.onload = function () {
+        module_picSlider.addListener();//点击切换
+        module_picSlider.play(3000);//自动轮播时间单位毫秒
+    };
+</script>
 </body>
 </html>
