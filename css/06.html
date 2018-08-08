@@ -191,7 +191,6 @@
         var getImgList = imgList.getElementsByTagName('a');//获取a标签
         var getImg = imgWrap.getElementsByTagName('img')[0];//获取图片
         var timer;
-        var pId = '';
         var index = 0;
         //移除<a>标签选中样式
         var removeBorder = function () {
@@ -218,7 +217,6 @@
                     getImg.className = name;
                     //获取当前位置  减1与i的值保持一直
                     index = name.substr( name.length - 1, 1) -1;
-                    //console.log(pId);
                 }
             })
         };
