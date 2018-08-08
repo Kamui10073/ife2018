@@ -239,7 +239,7 @@
                 showPic(index);
                 index++;
                 if(index === getImgList.length) {index = 0;}
-            },2500); //此2500代表自动播放的间隔，单位：毫秒
+            },2500); //此2500代表自动轮播间隔，单位：毫秒
         };
         return {
             addListener : addListener,
@@ -248,7 +248,7 @@
     }());
     window.onload = function () {
         module_picSlider.addListener();//点击切换
-        module_picSlider.play(3000);//自动轮播时间单位毫秒
+        module_picSlider.play(3000);//自动轮播，单位：毫秒
     };
 </script>
 </body>
