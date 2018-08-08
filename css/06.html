@@ -177,7 +177,7 @@
         <img class="img_01" src="images/img_01.jpg"  alt="图片">
     </div>
     <div id="img-wrap" class="wrap">
-        <a name="img_01" href="javascript:void (0);"></a>
+        <a class="selected" name="img_01" href="javascript:void (0);"></a>
         <a name="img_02" href="javascript:void (0);"></a>
         <a name="img_03" href="javascript:void (0);"></a>
         <a name="img_04" href="javascript:void (0);"></a>
@@ -190,6 +190,9 @@
         var imgList = document.getElementById('img-wrap');//获取NodeList
         var getImgList = imgList.getElementsByTagName('a');//获取a标签
         var getImg = imgWrap.getElementsByTagName('img')[0];//获取图片
+        var timer;
+        var pId = '';
+        var index = 0;
         //移除<a>标签选中样式
         var removeBorder = function () {
             for(var i = 0; i < getImgList.length; i++){
@@ -198,6 +201,7 @@
         };
         //事件代理
         var addListener = function () {
+            //为a标签
             imgList.addEventListener('click',function (ev) {
                 var e = ev || window.event;
                 var target = e.target || e.srcElement;
@@ -212,35 +216,32 @@
                     getImg.src='images/' + name + '.jpg';
                     //改变图片载入效果
                     getImg.className = name;
+                    //获取当前位置  减1与i的值保持一直
+                    index = name.substr( name.length - 1, 1) -1;
+                    //console.log(pId);
                 }
             })
         };
-        var play = function (time) {
-            //循环实现轮播
-            function playPic() {
-                for(var i = 0; i < getImgList.length; i++){
-                    //闭包传入i
-                    var timer = (function (i) {
-                        return function () {
-                            removeBorder();
-                            var el = getImgList[i];
-                            el.className = "selected";
-                            //获取<a>标签name
-                            var name = el.name;
-                            //改变图片src路径
-                            getImg.src='images/' + name + '.jpg';
-                            //改变图片载入效果
-                            getImg.className = name;
-                            console.log(i);
-                        }
-                    })(i);
-                    //设定单次循环间隔
-                    setTimeout(timer,i*time);
-                }
-                //间隔等于循环总时间
-                setTimeout(playPic,time*5);
-            }
-            playPic();
+        //普通循环
+        var showPic = function (index) {
+            removeBorder();
+            var el = getImgList[index];
+            el.className = "selected";
+            //获取<a>标签name
+            var name = el.name;
+            var getImg = imgWrap.getElementsByTagName('img')[0];
+            //改变图片src路径
+            getImg.src='images/' + name + '.jpg';
+            //改变图片载入效果
+            getImg.className = name;
+        };
+        var play = function () {
+            //实现轮播
+            timer = setInterval(function() {
+                showPic(index);
+                index++;
+                if(index === getImgList.length) {index = 0;}
+            },2500); //此2500代表自动播放的间隔，单位：毫秒
         };
         return {
             addListener : addListener,
