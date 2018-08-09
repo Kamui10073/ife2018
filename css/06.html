@@ -190,17 +190,17 @@
         var imgList = document.getElementById('img-wrap');//获取NodeList
         var getImgList = imgList.getElementsByTagName('a');//获取a标签
         var getImg = imgWrap.getElementsByTagName('img')[0];//获取图片
-        var timer;
-        var index = 0;
+        var timer;//计时器
+        var index = 0;//轮播图片当前位置
         //移除<a>标签选中样式
         var removeBorder = function () {
             for(var i = 0; i < getImgList.length; i++){
                 getImgList[i].className = "";
             }
         };
-        //事件代理
+        //
         var addListener = function () {
-            //为a标签
+            //为a标签绑定事件代理
             imgList.addEventListener('click',function (ev) {
                 var e = ev || window.event;
                 var target = e.target || e.srcElement;
@@ -218,6 +218,24 @@
                     //获取当前位置  减1与i的值保持一直
                     index = name.substr( name.length - 1, 1) -1;
                 }
+            });
+
+            imgList.addEventListener('mouseover',function (ev) {
+                var e = ev || window.event;
+                var target = e.target || e.srcElement;
+                if(target.nodeName.toLowerCase() === 'a'){
+                    //鼠标滑上焦点图时停止自动播放
+                    clearInterval(timer);
+                }
+            });
+
+            imgList.addEventListener('mouseout',function (ev) {
+                var e = ev || window.event;
+                var target = e.target || e.srcElement;
+                if(target.nodeName.toLowerCase() === 'a'){
+                    //鼠标离开焦点图时自动播放
+                    play(3000);
+                }
             })
         };
         //普通循环
@@ -233,13 +251,13 @@
             //改变图片载入效果
             getImg.className = name;
         };
-        var play = function () {
+        var play = function (time) {
             //实现轮播
             timer = setInterval(function() {
                 showPic(index);
-                index++;
+                index ++;
                 if(index === getImgList.length) {index = 0;}
-            },2500); //此2500代表自动轮播间隔，单位：毫秒
+            },time);
         };
         return {
             addListener : addListener,
@@ -248,7 +266,7 @@
     }());
     window.onload = function () {
         module_picSlider.addListener();//点击切换
-        module_picSlider.play(3000);//自动轮播，单位：毫秒
+        module_picSlider.play(3000);//自动轮播时间，单位：毫秒
     };
 </script>
 </body>
